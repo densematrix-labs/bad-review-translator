@@ -1,0 +1,23 @@
+{
+  "title": "AI Bad Review Translator",
+  "subtitle": "See what users REALLY mean vs what the boss hears",
+  "reviewPlaceholder": "Paste a bad review here...",
+  "sourceLabel": "Review Source",
+  "sources": {
+    "appstore": "App Store",
+    "restaurant": "Restaurant",
+    "ecommerce": "E-commerce",
+    "hotel": "Hotel",
+    "other": "Other"
+  },
+  "translateBtn": "Translate! 🔥",
+  "translating": "Translating...",
+  "userMeans": "🗣️ What the User REALLY Means",
+  "bossHears": "👔 What the Boss Hears",
+  "original": "📝 Original Review",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "share": "Share",
+  "error": "Translation failed, please try again",
+  "footer": "Powered by AI — For entertainment only"
+}

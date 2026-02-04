@@ -1,0 +1,23 @@
+{
+  "title": "AI Bewertungs-Übersetzer",
+  "subtitle": "Zwei Seiten einer schlechten Bewertung: Was der Nutzer meint vs. was der Chef hört",
+  "reviewPlaceholder": "Schlechte Bewertung hier einfügen...",
+  "sourceLabel": "Bewertungsquelle",
+  "sources": {
+    "appstore": "App Store",
+    "restaurant": "Restaurant",
+    "ecommerce": "E-Commerce",
+    "hotel": "Hotel",
+    "other": "Sonstiges"
+  },
+  "translateBtn": "Übersetzen! 🔥",
+  "translating": "Übersetze...",
+  "userMeans": "🗣️ Was der Nutzer WIRKLICH meint",
+  "bossHears": "👔 Was der Chef hört",
+  "original": "📝 Originalbewertung",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "share": "Teilen",
+  "error": "Übersetzung fehlgeschlagen, bitte erneut versuchen",
+  "footer": "KI-gestützt — Nur zur Unterhaltung"
+}

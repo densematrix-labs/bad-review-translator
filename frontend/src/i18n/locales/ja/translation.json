@@ -1,0 +1,23 @@
+{
+  "title": "AI 悪評翻訳機",
+  "subtitle": "悪評の両面：ユーザーの本音 vs 上司の解釈",
+  "reviewPlaceholder": "悪評をここに貼り付け...",
+  "sourceLabel": "レビュー元",
+  "sources": {
+    "appstore": "App Store",
+    "restaurant": "レストラン",
+    "ecommerce": "EC",
+    "hotel": "ホテル",
+    "other": "その他"
+  },
+  "translateBtn": "翻訳！🔥",
+  "translating": "翻訳中...",
+  "userMeans": "🗣️ ユーザーの本音",
+  "bossHears": "👔 上司が聞こえたこと",
+  "original": "📝 元のレビュー",
+  "copy": "コピー",
+  "copied": "コピーしました！",
+  "share": "共有",
+  "error": "翻訳に失敗しました。もう一度お試しください",
+  "footer": "AI搭載 — エンタメ目的のみ"
+}
