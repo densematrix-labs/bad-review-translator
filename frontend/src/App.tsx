@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import './App.css';
 
 const LANGUAGES = [
-  { code: 'en', flag: '🇺🇸', name: 'English' },
-  { code: 'zh', flag: '🇨🇳', name: '中文' },
-  { code: 'ja', flag: '🇯🇵', name: '日本語' },
-  { code: 'de', flag: '🇩🇪', name: 'Deutsch' },
-  { code: 'fr', flag: '🇫🇷', name: 'Français' },
-  { code: 'ko', flag: '🇰🇷', name: '한국어' },
-  { code: 'es', flag: '🇪🇸', name: 'Español' },
+  { code: 'en', label: 'EN' },
+  { code: 'zh', label: '中文' },
+  { code: 'ja', label: '日本語' },
+  { code: 'de', label: 'DE' },
+  { code: 'fr', label: 'FR' },
+  { code: 'ko', label: '한국어' },
+  { code: 'es', label: 'ES' },
 ];
 
 const SOURCES = ['appstore', 'restaurant', 'ecommerce', 'hotel', 'other'] as const;
@@ -71,18 +71,17 @@ function App() {
   return (
     <div className="app">
       <header>
-        <div className="lang-switcher">
+        <nav className="lang-switcher">
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
               className={`lang-btn ${i18n.language === lang.code ? 'active' : ''}`}
               onClick={() => changeLang(lang.code)}
-              title={lang.name}
             >
-              {lang.flag}
+              {lang.label}
             </button>
           ))}
-        </div>
+        </nav>
         <h1>{t('title')}</h1>
         <p className="subtitle">{t('subtitle')}</p>
       </header>
@@ -93,13 +92,13 @@ function App() {
             value={review}
             onChange={(e) => setReview(e.target.value)}
             placeholder={t('reviewPlaceholder')}
-            rows={4}
+            rows={5}
             maxLength={1000}
           />
 
           <div className="controls">
             <div className="source-select">
-              <label>{t('sourceLabel')}:</label>
+              <label>{t('sourceLabel')}</label>
               <div className="source-buttons">
                 {SOURCES.map((s) => (
                   <button
@@ -143,8 +142,6 @@ function App() {
                   {copied === 'user' ? t('copied') : t('copy')}
                 </button>
               </div>
-
-              <div className="vs">VS</div>
 
               <div className="result-card boss-hears">
                 <h3>{t('bossHears')}</h3>

@@ -1,8 +1,8 @@
 {
-  "title": "AI Traducteur d'Avis Négatifs",
-  "subtitle": "Les deux faces d'un avis négatif : ce que l'utilisateur veut dire vs ce que le patron entend",
-  "reviewPlaceholder": "Collez un avis négatif ici...",
-  "sourceLabel": "Source de l'avis",
+  "title": "Traducteur d'Avis Négatifs",
+  "subtitle": "Ce que l'utilisateur veut dire — versus ce que le patron entend.",
+  "reviewPlaceholder": "Collez un avis négatif ici…",
+  "sourceLabel": "Source",
   "sources": {
     "appstore": "App Store",
     "restaurant": "Restaurant",
@@ -10,14 +10,14 @@
     "hotel": "Hôtel",
     "other": "Autre"
   },
-  "translateBtn": "Traduire ! 🔥",
-  "translating": "Traduction...",
-  "userMeans": "🗣️ Ce que l'utilisateur veut VRAIMENT dire",
-  "bossHears": "👔 Ce que le patron entend",
-  "original": "📝 Avis original",
+  "translateBtn": "Traduire",
+  "translating": "Traduction…",
+  "userMeans": "Ce que l'utilisateur veut vraiment dire",
+  "bossHears": "Ce que le patron entend",
+  "original": "Avis original",
   "copy": "Copier",
-  "copied": "Copié !",
+  "copied": "Copié",
   "share": "Partager",
-  "error": "Échec de la traduction, veuillez réessayer",
-  "footer": "Propulsé par IA — Pour le divertissement uniquement"
+  "error": "Échec de la traduction. Veuillez réessayer.",
+  "footer": "Pour le divertissement uniquement"
 }

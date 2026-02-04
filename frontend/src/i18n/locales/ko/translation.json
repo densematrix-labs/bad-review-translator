@@ -1,8 +1,8 @@
 {
-  "title": "AI 악평 번역기",
-  "subtitle": "악평의 양면: 사용자의 속마음 vs 사장님이 듣는 말",
-  "reviewPlaceholder": "악평을 여기에 붙여넣기...",
-  "sourceLabel": "리뷰 출처",
+  "title": "악평 번역기",
+  "subtitle": "사용자의 속마음 vs 사장님이 듣는 말",
+  "reviewPlaceholder": "악평을 여기에 붙여넣기…",
+  "sourceLabel": "출처",
   "sources": {
     "appstore": "App Store",
     "restaurant": "레스토랑",
@@ -10,14 +10,14 @@
     "hotel": "호텔",
     "other": "기타"
   },
-  "translateBtn": "번역! 🔥",
-  "translating": "번역 중...",
-  "userMeans": "🗣️ 사용자가 정말 하고 싶은 말",
-  "bossHears": "👔 사장님이 듣는 말",
-  "original": "📝 원본 리뷰",
+  "translateBtn": "번역",
+  "translating": "번역 중…",
+  "userMeans": "사용자가 정말 하고 싶은 말",
+  "bossHears": "사장님이 듣는 말",
+  "original": "원본 리뷰",
   "copy": "복사",
-  "copied": "복사됨!",
+  "copied": "복사됨",
   "share": "공유",
-  "error": "번역에 실패했습니다. 다시 시도해주세요",
-  "footer": "AI 기반 — 엔터테인먼트 전용"
+  "error": "번역에 실패했습니다. 다시 시도해주세요.",
+  "footer": "엔터테인먼트 전용"
 }

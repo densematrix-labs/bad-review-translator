@@ -1,8 +1,8 @@
 {
-  "title": "AI Traductor de Reseñas Negativas",
-  "subtitle": "Las dos caras de una mala reseña: lo que el usuario quiere decir vs lo que el jefe escucha",
-  "reviewPlaceholder": "Pega una reseña negativa aquí...",
-  "sourceLabel": "Fuente de la reseña",
+  "title": "Traductor de Reseñas Negativas",
+  "subtitle": "Lo que el usuario quiere decir — versus lo que el jefe escucha.",
+  "reviewPlaceholder": "Pega una reseña negativa aquí…",
+  "sourceLabel": "Fuente",
   "sources": {
     "appstore": "App Store",
     "restaurant": "Restaurante",
@@ -10,14 +10,14 @@
     "hotel": "Hotel",
     "other": "Otro"
   },
-  "translateBtn": "¡Traducir! 🔥",
-  "translating": "Traduciendo...",
-  "userMeans": "🗣️ Lo que el usuario REALMENTE quiere decir",
-  "bossHears": "👔 Lo que el jefe escucha",
-  "original": "📝 Reseña original",
+  "translateBtn": "Traducir",
+  "translating": "Traduciendo…",
+  "userMeans": "Lo que el usuario realmente quiere decir",
+  "bossHears": "Lo que el jefe escucha",
+  "original": "Reseña original",
   "copy": "Copiar",
-  "copied": "¡Copiado!",
+  "copied": "Copiado",
   "share": "Compartir",
-  "error": "Error en la traducción, intenta de nuevo",
-  "footer": "Impulsado por IA — Solo para entretenimiento"
+  "error": "Error en la traducción. Intenta de nuevo.",
+  "footer": "Solo para entretenimiento"
 }
