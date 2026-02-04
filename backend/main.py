@@ -1,14 +1,32 @@
-from fastapi import FastAPI, HTTPException
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 import httpx
 import logging
-from typing import Literal
+from typing import Literal, Optional
+from datetime import datetime
+
+from app.core.config import settings
+from app.core.database import get_db, init_db
+from app.models import GenerationToken, FreeTrialTracking
+from app.api.payment import router as payment_router
+from app.api.tokens import router as tokens_router
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="AI 差评翻译器", version="1.0.0")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Initialize database tables on startup."""
+    await init_db()
+    yield
+
+
+app = FastAPI(title="AI 差评翻译器", version="2.0.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -18,9 +36,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-LLM_PROXY_URL = "https://llm-proxy.densematrix.ai"
-LLM_PROXY_KEY = "sk-wskhgeyawc"
-LLM_MODEL = "gemini-2.5-flash"
+# Register payment and token routers under /api
+app.include_router(payment_router, prefix="/api")
+app.include_router(tokens_router, prefix="/api")
+
 
 SourceType = Literal["appstore", "restaurant", "ecommerce", "hotel", "other"]
 LangType = Literal["en", "zh", "ja", "de", "fr", "ko", "es"]
@@ -30,6 +49,8 @@ class TranslateRequest(BaseModel):
     review: str
     source: SourceType
     language: LangType = "zh"
+    device_id: Optional[str] = None
+    token: Optional[str] = None
 
 
 class TranslateResponse(BaseModel):
@@ -38,6 +59,11 @@ class TranslateResponse(BaseModel):
     boss_hears: str
     source: str
     language: str
+
+
+class TrialStatusResponse(BaseModel):
+    has_free_trial: bool
+    uses_remaining: int
 
 
 SOURCE_LABELS_ZH = {
@@ -62,13 +88,13 @@ async def call_llm(prompt: str) -> str:
     try:
         async with httpx.AsyncClient() as client:
             response = await client.post(
-                f"{LLM_PROXY_URL}/v1/chat/completions",
+                f"{settings.LLM_PROXY_URL}/v1/chat/completions",
                 headers={
-                    "Authorization": f"Bearer {LLM_PROXY_KEY}",
+                    "Authorization": f"Bearer {settings.LLM_PROXY_KEY}",
                     "Content-Type": "application/json",
                 },
                 json={
-                    "model": LLM_MODEL,
+                    "model": settings.LLM_MODEL,
                     "messages": [{"role": "user", "content": prompt}],
                     "max_tokens": 1000,
                     "temperature": 0.8,
@@ -118,9 +144,7 @@ def parse_llm_response(text: str) -> dict:
     import json
     import re
 
-    # Try direct JSON parse
     text = text.strip()
-    # Remove markdown code blocks if present
     text = re.sub(r"^```(?:json)?\s*", "", text)
     text = re.sub(r"\s*```$", "", text)
     text = text.strip()
@@ -132,7 +156,6 @@ def parse_llm_response(text: str) -> dict:
     except json.JSONDecodeError:
         pass
 
-    # Fallback: extract from text
     user_match = re.search(
         r'"user_really_means"\s*:\s*"([^"]*(?:\\.[^"]*)*)"', text
     )
@@ -147,17 +170,95 @@ def parse_llm_response(text: str) -> dict:
     raise ValueError(f"无法解析 LLM 返回: {text[:200]}")
 
 
+async def check_and_use_free_trial(device_id: str, db: AsyncSession) -> bool:
+    """Check if device has free trial remaining. If so, consume one use. Returns True if allowed."""
+    if not device_id:
+        return False
+
+    result = await db.execute(
+        select(FreeTrialTracking).where(FreeTrialTracking.device_id == device_id)
+    )
+    tracking = result.scalar_one_or_none()
+
+    if tracking is None:
+        # First use — create tracking and allow
+        tracking = FreeTrialTracking(device_id=device_id, uses_count=1)
+        db.add(tracking)
+        await db.commit()
+        return True
+    elif tracking.uses_count < settings.FREE_TRIAL_LIMIT:
+        tracking.uses_count += 1
+        await db.commit()
+        return True
+    else:
+        return False
+
+
+async def check_and_use_token(token_str: str, db: AsyncSession) -> bool:
+    """Validate token and consume one generation. Returns True if successful."""
+    if not token_str:
+        return False
+
+    result = await db.execute(
+        select(GenerationToken).where(GenerationToken.token == token_str)
+    )
+    token_obj = result.scalar_one_or_none()
+
+    if token_obj and token_obj.use_generation():
+        await db.commit()
+        return True
+    return False
+
+
 @app.get("/health")
 async def health_check():
     return {"status": "ok", "service": "bad-review-translator"}
 
 
+@app.get("/api/trial-status/{device_id}", response_model=TrialStatusResponse)
+async def get_trial_status(device_id: str, db: AsyncSession = Depends(get_db)):
+    """Check free trial status for a device."""
+    result = await db.execute(
+        select(FreeTrialTracking).where(FreeTrialTracking.device_id == device_id)
+    )
+    tracking = result.scalar_one_or_none()
+
+    if tracking is None:
+        return TrialStatusResponse(has_free_trial=True, uses_remaining=settings.FREE_TRIAL_LIMIT)
+    else:
+        remaining = max(0, settings.FREE_TRIAL_LIMIT - tracking.uses_count)
+        return TrialStatusResponse(has_free_trial=remaining > 0, uses_remaining=remaining)
+
+
 @app.post("/api/translate-review", response_model=TranslateResponse)
-async def translate_review(request: TranslateRequest):
-    """翻译差评"""
+async def translate_review(request: TranslateRequest, db: AsyncSession = Depends(get_db)):
+    """翻译差评 — with token consumption logic."""
     if not request.review or not request.review.strip():
         raise HTTPException(status_code=400, detail="差评内容不能为空")
 
+    # 1. Try paid token first
+    if request.token:
+        if await check_and_use_token(request.token, db):
+            pass  # Authorized via token
+        else:
+            raise HTTPException(
+                status_code=402,
+                detail="Token is invalid, expired, or has no remaining generations"
+            )
+    # 2. Try free trial
+    elif request.device_id:
+        if not await check_and_use_free_trial(request.device_id, db):
+            raise HTTPException(
+                status_code=402,
+                detail="Free trial exhausted. Please purchase credits to continue."
+            )
+    else:
+        raise HTTPException(
+            status_code=400,
+            detail="Either device_id (for free trial) or token (for paid use) is required"
+        )
+
+    # Execute translation
     try:
         prompt = build_prompt(request.review, request.source, request.language)
         raw = await call_llm(prompt)
@@ -179,5 +280,4 @@ async def translate_review(request: TranslateRequest):
 
 if __name__ == "__main__":
     import uvicorn
-
     uvicorn.run(app, host="0.0.0.0", port=8000)

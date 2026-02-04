@@ -12,6 +12,7 @@
   },
   "translateBtn": "Translate",
   "translating": "Translating...",
+  "buyToTranslate": "Buy Credits to Translate",
   "userMeans": "What the User Really Means",
   "bossHears": "What the Boss Hears",
   "original": "Original Review",
@@ -19,5 +20,38 @@
   "copied": "Copied",
   "share": "Share",
   "error": "Translation failed. Please try again.",
-  "footer": "For entertainment purposes only"
+  "needCredits": "Free trial used. Please purchase credits to continue.",
+  "footer": "For entertainment purposes only",
+  "creditsRemaining": "{{count}} credits remaining",
+  "freeTrialAvailable": "1 free translation available",
+  "noCredits": "No credits remaining",
+  "buyCredits": "Buy Credits",
+  "pricing": {
+    "title": "Get Translation Credits",
+    "subtitle": "Translate bad reviews into comedy gold",
+    "trialNote": "✨ Every device gets 1 free translation to try!",
+    "popular": "Popular",
+    "translations": "Translations",
+    "save": "Save",
+    "perTranslation": "per translation",
+    "buyNow": "Buy Now",
+    "processing": "Processing...",
+    "error": "Payment error. Please try again.",
+    "backHome": "Back to Translator",
+    "features": {
+      "ai": "AI-powered humor translation",
+      "sources": "All review sources supported",
+      "languages": "7 languages available",
+      "copy": "Copy & share results"
+    }
+  },
+  "success": {
+    "title": "Payment Successful!",
+    "subtitle": "Your credits have been added to your account.",
+    "loading": "Loading your tokens...",
+    "tokenLabel": "Your Token (save for future use)",
+    "tokenHint": "Use this token to restore credits on any device",
+    "startUsing": "Start Translating",
+    "buyMore": "Buy More Credits"
+  }
 }

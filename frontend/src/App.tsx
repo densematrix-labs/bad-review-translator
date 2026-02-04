@@ -1,5 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { useTokenStore } from './stores/tokenStore';
+import { getDeviceId } from './lib/fingerprint';
+import { getTrialStatus, translateReview } from './services/api';
 import './App.css';
 
 const LANGUAGES = [
@@ -30,29 +34,75 @@ function App() {
   const [result, setResult] = useState<TranslateResult | null>(null);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
+  const [deviceId, setDeviceId] = useState<string | null>(null);
+  const [hasFreeTrial, setHasFreeTrial] = useState<boolean | null>(null);
+
+  const { getActiveToken, getTotalGenerations, updateTokenUsage } = useTokenStore();
+  const activeToken = getActiveToken();
+  const totalCredits = getTotalGenerations();
+
+  // Initialize device ID and check trial status
+  useEffect(() => {
+    async function init() {
+      const id = await getDeviceId();
+      setDeviceId(id);
+      try {
+        const status = await getTrialStatus(id);
+        setHasFreeTrial(status.has_free_trial);
+      } catch {
+        // If API fails (no DB yet), assume trial available
+        setHasFreeTrial(true);
+      }
+    }
+    init();
+  }, []);
+
+  const canTranslate = hasFreeTrial || totalCredits > 0;
 
   const handleTranslate = async () => {
-    if (!review.trim()) return;
+    if (!review.trim() || !deviceId) return;
     setLoading(true);
     setError('');
     setResult(null);
 
     try {
-      const res = await fetch('/api/translate-review', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          review: review.trim(),
-          source,
-          language: i18n.language,
-        }),
-      });
+      const payload: {
+        review: string;
+        source: string;
+        language: string;
+        device_id?: string;
+        token?: string;
+      } = {
+        review: review.trim(),
+        source,
+        language: i18n.language,
+      };
 
-      if (!res.ok) throw new Error('Translation failed');
-      const data = await res.json();
+      // Use paid token if available, otherwise fall back to free trial
+      if (activeToken) {
+        payload.token = activeToken.token;
+      } else {
+        payload.device_id = deviceId;
+      }
+
+      const data = await translateReview(payload);
       setResult(data);
-    } catch {
-      setError(t('error'));
+
+      // Update local token state after successful use
+      if (activeToken) {
+        updateTokenUsage(activeToken.token, activeToken.remaining_generations - 1);
+      } else {
+        // Free trial used, update status
+        setHasFreeTrial(false);
+      }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : t('error');
+      if (message.includes('402') || message.includes('trial') || message.includes('Token')) {
+        setError(t('needCredits'));
+        setHasFreeTrial(false);
+      } else {
+        setError(t('error'));
+      }
     } finally {
       setLoading(false);
     }
@@ -84,6 +134,26 @@ function App() {
         </nav>
         <h1>{t('title')}</h1>
         <p className="subtitle">{t('subtitle')}</p>
+
+        {/* Credits indicator + pricing link */}
+        <div className="credits-bar">
+          {totalCredits > 0 ? (
+            <span className="credits-count">
+              {t('creditsRemaining', { count: totalCredits })}
+            </span>
+          ) : hasFreeTrial ? (
+            <span className="credits-count free-trial">
+              {t('freeTrialAvailable')}
+            </span>
+          ) : (
+            <span className="credits-count no-credits">
+              {t('noCredits')}
+            </span>
+          )}
+          <Link to="/pricing" className="pricing-link">
+            {t('buyCredits')}
+          </Link>
+        </div>
       </header>
 
       <main>
@@ -115,9 +185,9 @@ function App() {
             <button
               className="translate-btn"
               onClick={handleTranslate}
-              disabled={loading || !review.trim()}
+              disabled={loading || !review.trim() || !canTranslate}
             >
-              {loading ? t('translating') : t('translateBtn')}
+              {loading ? t('translating') : !canTranslate ? t('buyToTranslate') : t('translateBtn')}
             </button>
           </div>
         </div>

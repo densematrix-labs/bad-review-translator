@@ -12,6 +12,7 @@
   },
   "translateBtn": "翻译",
   "translating": "翻译中…",
+  "buyToTranslate": "购买额度以翻译",
   "userMeans": "用户真正想说的",
   "bossHears": "老板听到的",
   "original": "差评原文",
@@ -19,5 +20,38 @@
   "copied": "已复制",
   "share": "分享",
   "error": "翻译失败，请重试",
-  "footer": "仅供娱乐"
+  "needCredits": "免费试用已用完，请购买额度继续使用。",
+  "footer": "仅供娱乐",
+  "creditsRemaining": "剩余 {{count}} 次额度",
+  "freeTrialAvailable": "1 次免费翻译可用",
+  "noCredits": "额度已用完",
+  "buyCredits": "购买额度",
+  "pricing": {
+    "title": "购买翻译额度",
+    "subtitle": "把差评翻译成段子",
+    "trialNote": "✨ 每台设备可免费试用 1 次！",
+    "popular": "热门",
+    "translations": "次翻译",
+    "save": "省",
+    "perTranslation": "/ 次",
+    "buyNow": "立即购买",
+    "processing": "处理中…",
+    "error": "支付出错，请重试。",
+    "backHome": "返回翻译器",
+    "features": {
+      "ai": "AI 驱动的搞笑翻译",
+      "sources": "支持所有评价来源",
+      "languages": "支持 7 种语言",
+      "copy": "一键复制分享"
+    }
+  },
+  "success": {
+    "title": "支付成功！",
+    "subtitle": "额度已添加到您的账户。",
+    "loading": "正在加载令牌…",
+    "tokenLabel": "您的令牌（请妥善保存）",
+    "tokenHint": "使用此令牌可在任意设备恢复额度",
+    "startUsing": "开始翻译",
+    "buyMore": "购买更多额度"
+  }
 }

@@ -1,6 +1,6 @@
 {
   "title": "Traducteur d'Avis Négatifs",
-  "subtitle": "Ce que l'utilisateur veut dire — versus ce que le patron entend.",
+  "subtitle": "Ce que l'utilisateur a vraiment dit — versus ce que le patron a entendu.",
   "reviewPlaceholder": "Collez un avis négatif ici…",
   "sourceLabel": "Source",
   "sources": {
@@ -11,13 +11,47 @@
     "other": "Autre"
   },
   "translateBtn": "Traduire",
-  "translating": "Traduction…",
+  "translating": "Traduction en cours…",
+  "buyToTranslate": "Acheter des crédits pour traduire",
   "userMeans": "Ce que l'utilisateur veut vraiment dire",
   "bossHears": "Ce que le patron entend",
   "original": "Avis original",
   "copy": "Copier",
   "copied": "Copié",
   "share": "Partager",
-  "error": "Échec de la traduction. Veuillez réessayer.",
-  "footer": "Pour le divertissement uniquement"
+  "error": "La traduction a échoué. Veuillez réessayer.",
+  "needCredits": "Essai gratuit terminé. Veuillez acheter des crédits pour continuer.",
+  "footer": "À des fins de divertissement uniquement",
+  "creditsRemaining": "{{count}} crédits restants",
+  "freeTrialAvailable": "1 traduction gratuite disponible",
+  "noCredits": "Plus de crédits",
+  "buyCredits": "Acheter des crédits",
+  "pricing": {
+    "title": "Obtenir des crédits de traduction",
+    "subtitle": "Transformez les avis négatifs en or comique",
+    "trialNote": "✨ Chaque appareil bénéficie d'1 traduction gratuite !",
+    "popular": "Populaire",
+    "translations": "Traductions",
+    "save": "Économisez",
+    "perTranslation": "par traduction",
+    "buyNow": "Acheter maintenant",
+    "processing": "Traitement…",
+    "error": "Erreur de paiement. Veuillez réessayer.",
+    "backHome": "Retour au traducteur",
+    "features": {
+      "ai": "Traduction humoristique par IA",
+      "sources": "Toutes les sources d'avis supportées",
+      "languages": "7 langues disponibles",
+      "copy": "Copier et partager les résultats"
+    }
+  },
+  "success": {
+    "title": "Paiement réussi !",
+    "subtitle": "Vos crédits ont été ajoutés à votre compte.",
+    "loading": "Chargement de vos tokens…",
+    "tokenLabel": "Votre token (à conserver)",
+    "tokenHint": "Utilisez ce token pour restaurer vos crédits sur n'importe quel appareil",
+    "startUsing": "Commencer à traduire",
+    "buyMore": "Acheter plus de crédits"
+  }
 }

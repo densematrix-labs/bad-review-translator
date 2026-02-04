@@ -1,7 +1,7 @@
 {
-  "title": "悪評翻訳機",
-  "subtitle": "悪評の両面：ユーザーの本音 vs 上司の解釈",
-  "reviewPlaceholder": "悪評をここに貼り付け…",
+  "title": "悪いレビュー翻訳機",
+  "subtitle": "ユーザーが本当に言いたいこと vs 上司が聞いたこと",
+  "reviewPlaceholder": "悪いレビューをここに貼り付けてください…",
   "sourceLabel": "ソース",
   "sources": {
     "appstore": "App Store",
@@ -10,14 +10,48 @@
     "hotel": "ホテル",
     "other": "その他"
   },
-  "translateBtn": "翻訳",
+  "translateBtn": "翻訳する",
   "translating": "翻訳中…",
-  "userMeans": "ユーザーの本音",
-  "bossHears": "上司が聞こえたこと",
+  "buyToTranslate": "クレジットを購入して翻訳",
+  "userMeans": "ユーザーが本当に言いたいこと",
+  "bossHears": "上司が聞いたこと",
   "original": "元のレビュー",
   "copy": "コピー",
-  "copied": "コピー済",
+  "copied": "コピー済み",
   "share": "共有",
-  "error": "翻訳に失敗しました。もう一度お試しください",
-  "footer": "エンタメ目的のみ"
+  "error": "翻訳に失敗しました。もう一度お試しください。",
+  "needCredits": "無料トライアルは終了しました。続けるにはクレジットを購入してください。",
+  "footer": "エンターテインメント目的のみ",
+  "creditsRemaining": "残り {{count}} クレジット",
+  "freeTrialAvailable": "無料翻訳1回利用可能",
+  "noCredits": "クレジットなし",
+  "buyCredits": "クレジット購入",
+  "pricing": {
+    "title": "翻訳クレジットを取得",
+    "subtitle": "悪いレビューをお笑いに変換",
+    "trialNote": "✨ 各デバイスで1回無料翻訳をお試しいただけます！",
+    "popular": "人気",
+    "translations": "回翻訳",
+    "save": "節約",
+    "perTranslation": "/ 翻訳",
+    "buyNow": "今すぐ購入",
+    "processing": "処理中…",
+    "error": "支払いエラー。もう一度お試しください。",
+    "backHome": "翻訳機に戻る",
+    "features": {
+      "ai": "AI搭載のユーモア翻訳",
+      "sources": "すべてのレビューソースに対応",
+      "languages": "7言語対応",
+      "copy": "結果をコピー＆共有"
+    }
+  },
+  "success": {
+    "title": "支払い成功！",
+    "subtitle": "クレジットがアカウントに追加されました。",
+    "loading": "トークンを読み込み中…",
+    "tokenLabel": "あなたのトークン（大切に保管してください）",
+    "tokenHint": "このトークンで任意のデバイスでクレジットを復元できます",
+    "startUsing": "翻訳を開始",
+    "buyMore": "もっとクレジットを購入"
+  }
 }

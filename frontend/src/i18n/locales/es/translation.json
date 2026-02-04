@@ -1,7 +1,7 @@
 {
-  "title": "Traductor de Reseñas Negativas",
-  "subtitle": "Lo que el usuario quiere decir — versus lo que el jefe escucha.",
-  "reviewPlaceholder": "Pega una reseña negativa aquí…",
+  "title": "Traductor de Reseñas Malas",
+  "subtitle": "Lo que el usuario realmente dijo — versus lo que el jefe escuchó.",
+  "reviewPlaceholder": "Pega una reseña mala aquí…",
   "sourceLabel": "Fuente",
   "sources": {
     "appstore": "App Store",
@@ -12,12 +12,46 @@
   },
   "translateBtn": "Traducir",
   "translating": "Traduciendo…",
+  "buyToTranslate": "Comprar créditos para traducir",
   "userMeans": "Lo que el usuario realmente quiere decir",
   "bossHears": "Lo que el jefe escucha",
   "original": "Reseña original",
   "copy": "Copiar",
   "copied": "Copiado",
   "share": "Compartir",
-  "error": "Error en la traducción. Intenta de nuevo.",
-  "footer": "Solo para entretenimiento"
+  "error": "La traducción falló. Por favor, inténtalo de nuevo.",
+  "needCredits": "Prueba gratuita agotada. Por favor, compra créditos para continuar.",
+  "footer": "Solo con fines de entretenimiento",
+  "creditsRemaining": "{{count}} créditos restantes",
+  "freeTrialAvailable": "1 traducción gratuita disponible",
+  "noCredits": "Sin créditos",
+  "buyCredits": "Comprar créditos",
+  "pricing": {
+    "title": "Obtener créditos de traducción",
+    "subtitle": "Convierte reseñas malas en oro cómico",
+    "trialNote": "✨ ¡Cada dispositivo obtiene 1 traducción gratuita!",
+    "popular": "Popular",
+    "translations": "Traducciones",
+    "save": "Ahorra",
+    "perTranslation": "por traducción",
+    "buyNow": "Comprar ahora",
+    "processing": "Procesando…",
+    "error": "Error de pago. Por favor, inténtalo de nuevo.",
+    "backHome": "Volver al traductor",
+    "features": {
+      "ai": "Traducción humorística con IA",
+      "sources": "Todas las fuentes de reseñas soportadas",
+      "languages": "7 idiomas disponibles",
+      "copy": "Copiar y compartir resultados"
+    }
+  },
+  "success": {
+    "title": "¡Pago exitoso!",
+    "subtitle": "Tus créditos han sido añadidos a tu cuenta.",
+    "loading": "Cargando tus tokens…",
+    "tokenLabel": "Tu token (guárdalo)",
+    "tokenHint": "Usa este token para restaurar créditos en cualquier dispositivo",
+    "startUsing": "Empezar a traducir",
+    "buyMore": "Comprar más créditos"
+  }
 }

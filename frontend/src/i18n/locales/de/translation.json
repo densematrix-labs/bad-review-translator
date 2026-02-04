@@ -1,7 +1,7 @@
 {
-  "title": "Bewertungs-Übersetzer",
-  "subtitle": "Was der Nutzer meint — versus was der Chef hört.",
-  "reviewPlaceholder": "Schlechte Bewertung hier einfügen…",
+  "title": "Schlechte-Bewertungen-Übersetzer",
+  "subtitle": "Was der Nutzer wirklich meint — versus was der Chef hört.",
+  "reviewPlaceholder": "Fügen Sie hier eine schlechte Bewertung ein…",
   "sourceLabel": "Quelle",
   "sources": {
     "appstore": "App Store",
@@ -12,6 +12,7 @@
   },
   "translateBtn": "Übersetzen",
   "translating": "Übersetze…",
+  "buyToTranslate": "Credits kaufen zum Übersetzen",
   "userMeans": "Was der Nutzer wirklich meint",
   "bossHears": "Was der Chef hört",
   "original": "Originalbewertung",
@@ -19,5 +20,38 @@
   "copied": "Kopiert",
   "share": "Teilen",
   "error": "Übersetzung fehlgeschlagen. Bitte erneut versuchen.",
-  "footer": "Nur zur Unterhaltung"
+  "needCredits": "Kostenlose Testversion aufgebraucht. Bitte kaufen Sie Credits.",
+  "footer": "Nur zur Unterhaltung",
+  "creditsRemaining": "{{count}} Credits übrig",
+  "freeTrialAvailable": "1 kostenlose Übersetzung verfügbar",
+  "noCredits": "Keine Credits übrig",
+  "buyCredits": "Credits kaufen",
+  "pricing": {
+    "title": "Übersetzungs-Credits kaufen",
+    "subtitle": "Verwandeln Sie schlechte Bewertungen in Comedy-Gold",
+    "trialNote": "✨ Jedes Gerät bekommt 1 kostenlose Übersetzung!",
+    "popular": "Beliebt",
+    "translations": "Übersetzungen",
+    "save": "Sparen",
+    "perTranslation": "pro Übersetzung",
+    "buyNow": "Jetzt kaufen",
+    "processing": "Wird verarbeitet…",
+    "error": "Zahlungsfehler. Bitte erneut versuchen.",
+    "backHome": "Zurück zum Übersetzer",
+    "features": {
+      "ai": "KI-gestützte Humor-Übersetzung",
+      "sources": "Alle Bewertungsquellen unterstützt",
+      "languages": "7 Sprachen verfügbar",
+      "copy": "Ergebnisse kopieren & teilen"
+    }
+  },
+  "success": {
+    "title": "Zahlung erfolgreich!",
+    "subtitle": "Ihre Credits wurden Ihrem Konto hinzugefügt.",
+    "loading": "Laden Ihrer Tokens…",
+    "tokenLabel": "Ihr Token (bitte aufbewahren)",
+    "tokenHint": "Verwenden Sie dieses Token, um Credits auf jedem Gerät wiederherzustellen",
+    "startUsing": "Übersetzung starten",
+    "buyMore": "Mehr Credits kaufen"
+  }
 }
