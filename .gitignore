@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 .env
 .venv
+
+# Programmatic SEO (generated at build time)
+frontend/public/p/
+frontend/public/sitemap-programmatic.xml

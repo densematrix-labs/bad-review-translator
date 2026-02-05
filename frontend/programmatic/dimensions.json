@@ -1,0 +1,30 @@
+{
+  "tool": "Bad Review Translator",
+  "tool_url": "https://bad-review.demo.densematrix.ai",
+  "dimensions": [
+    {
+      "name": "industry",
+      "name_zh": "行业",
+      "values_en": ["restaurant", "hotel", "retail", "ecommerce", "saas", "healthcare", "automotive", "fitness", "salon", "education"],
+      "values_zh": ["餐饮", "酒店", "零售", "电商", "SaaS", "医疗", "汽车", "健身", "美容", "教育"]
+    },
+    {
+      "name": "platform",
+      "name_zh": "评价平台",
+      "values_en": ["google", "yelp", "tripadvisor", "amazon", "trustpilot", "glassdoor", "facebook", "app-store"],
+      "values_zh": ["谷歌", "Yelp", "猫途鹰", "亚马逊", "Trustpilot", "Glassdoor", "脸书", "应用商店"]
+    },
+    {
+      "name": "issue_type",
+      "name_zh": "问题类型",
+      "values_en": ["service", "quality", "price", "delivery", "communication", "refund", "attitude", "wait-time"],
+      "values_zh": ["服务", "质量", "价格", "配送", "沟通", "退款", "态度", "等待时间"]
+    }
+  ],
+  "combinations": [
+    ["industry", "platform"],
+    ["industry", "issue_type"],
+    ["platform", "issue_type"]
+  ],
+  "estimated_pages": 224
+}
