@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+from prometheus_fastapi_instrumentator import Instrumentator
 import httpx
 import logging
 from typing import Literal, Optional
@@ -14,6 +15,7 @@ from app.core.database import get_db, init_db
 from app.models import GenerationToken, FreeTrialTracking
 from app.api.payment import router as payment_router
 from app.api.tokens import router as tokens_router
+from metrics import record_generation, record_token_consumed, generation_timer
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -39,6 +41,9 @@ app.add_middleware(
 # Register payment and token routers under /api
 app.include_router(payment_router, prefix="/api")
 app.include_router(tokens_router, prefix="/api")
+
+# Prometheus metrics
+Instrumentator().instrument(app).expose(app, endpoint="/api/metrics")
 
 
 SourceType = Literal["appstore", "restaurant", "ecommerce", "hotel", "other"]
