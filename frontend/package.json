@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "generate-seo": "npx ts-node programmatic/generate-seo.ts",
+    "generate-seo": "node programmatic/generate-seo.mjs",
     "build": "npm run generate-seo && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
