@@ -61,6 +61,11 @@ jobs:
           sleep 30
           curl -sf https://bad-review.demo.densematrix.ai/health || exit 1
 
+      - name: Ping Google Sitemap
+        run: |
+          curl -s "https://www.google.com/ping?sitemap=https://bad-review.demo.densematrix.ai/sitemap.xml"
+          echo "✅ Sitemap ping sent to Google"
+
       - name: Notify Slack on success
         if: success()
         uses: slackapi/slack-github-action@v1.26.0
