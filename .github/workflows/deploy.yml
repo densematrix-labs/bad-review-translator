@@ -52,7 +52,8 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
             cd ${{ env.DEPLOY_PATH }}
-            docker compose down
+            docker compose down --remove-orphans || true
+            docker rm -f bad-review-frontend bad-review-backend bad-review-postgres 2>/dev/null || true
             docker compose up -d --build
             
       - name: Health check
