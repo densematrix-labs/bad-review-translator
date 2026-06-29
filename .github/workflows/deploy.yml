@@ -50,11 +50,11 @@ jobs:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
+          command_timeout: 30m
           script: |
             cd ${{ env.DEPLOY_PATH }}
-            docker compose down --remove-orphans || true
-            docker rm -f bad-review-frontend bad-review-backend bad-review-postgres 2>/dev/null || true
-            docker compose up -d --build
+            docker compose build
+            docker compose up -d --remove-orphans
             
       - name: Health check
         run: |
